@@ -1,3 +1,4 @@
 from django.contrib import admin
+from women.models import *
 
-# Register your models here.
+admin.site.register(Women)
