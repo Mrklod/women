@@ -3,7 +3,11 @@
 {% block content %}
 <ul class="list-articles">
 	{% for p in posts %}
-			<li><h2>{{p.title}}</h2>
+			<li><div class="article-panel">
+				<p class="first">Категория: {{ p.cat }}</p>
+				<p class="last">Дата: {{ p.time_update }}</p>
+			</div>
+				<h2>{{p.title}}</h2>
 	{{p.content|linebreaks|truncatewords:50}}
 			<div class="clear"></div>
 			<p class="link-read-post"><a href="{% url 'post' p.pk %}">Читать пост</a></p>
