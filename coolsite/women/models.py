@@ -5,7 +5,7 @@ from django.urls import reverse
 class Women(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
-    photo = models.ImageField(upload_to="photos/%Y/%n/%d/",blank=True)
+    photo = models.ImageField(upload_to="photos/%Y",blank=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
@@ -17,6 +17,11 @@ class Women(models.Model):
     def get_absolute_url(self):
         return reverse('post',kwargs={'post_id':self.pk})
 
+    class Meta:
+        verbose_name = 'Известные женщины'
+        verbose_name_plural = 'Известные женщины'
+        ordering = ['time_create']
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100,db_index=True)
@@ -26,3 +31,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('category',kwargs={'cat_id':self.pk})
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
